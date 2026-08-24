@@ -117,3 +117,61 @@ $acesso3 = new AcessoSistema();
 $acesso4 = new AcessoSistema();
 
 echo "Total de acessos: " . AcessoSistema::getTotalAcessos();
+
+<?php
+class Lampada {
+    private bool $ligada = false;
+
+    public function ligar(): void {
+        $this->ligada = true;
+    }
+
+    public function desligar(): void {
+        $this->ligada = false;
+    }
+
+    public function observar(): string {
+        if ($this->ligada) {
+            return "A lâmpada está ligada";
+        }
+        return "A lâmpada está desligada";
+    }
+}
+
+<?php
+
+class ContaBancaria {
+    private string $titular;
+    private float $saldo;
+
+    public function __construct(string $titular, float $saldoInicial) {
+        $this->titular = $titular;
+        $this->saldo = $saldoInicial >= 0 ? $saldoInicial : 0.0;
+    }
+
+    public function depositar(float $valor): void {
+        if ($valor > 0) {
+            $this->saldo += $valor;
+        }
+    }
+
+    public function sacar(float $valor): void {
+        if ($valor > 0 && $valor <= $this->saldo) {
+            $this->saldo -= $valor;
+        }
+    }
+
+    public function getSaldo(): float {
+        return $this->saldo;
+    }
+
+    public function getTitular(): string {
+        return $this->titular;
+    }
+}
+
+
+$conta = new ContaBancaria("Carlos Silva", 500.00);
+$conta->depositar(250.50);
+$conta->sacar(150.00);
+$conta->sacar(900.00);
