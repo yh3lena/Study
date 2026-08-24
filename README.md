@@ -59,3 +59,36 @@ do {
     }
 } while ($opcao !== '4');
 
+
+<?php
+
+class Retangulo{
+    private float $largura;
+    private float $altura;
+    
+    public function __construct(float $largura, float $altura){
+        $this->largura = $largura;
+        $this->altura = $altura;
+    }
+
+    public function calcular_area(): float{
+    return $this->largura * $this->altura;
+    }
+    
+    public function calcular_perimetro(): float{
+        return 2 * ($this->largura + $this->altura);
+    }
+    
+    public function isQuadrado(): bool{
+        return $this->altura == $this->largura;
+    }
+}
+
+$larguraDigitada = (float) readline("Coloque a largura: \n");
+$alturaDigitada = (float) readline("Coloque a altura: \n");
+
+$retangulo = new Retangulo($larguraDigitada, $alturaDigitada);
+
+echo ("A área é: ". $retangulo->calcular_area(). "\n");
+echo("O perimetro é: ". $retangulo->calcular_perimetro(). "\n");
+echo("É um quadrado? ". ($retangulo->isQuadrado() ? "Sim":"Não"). "\n")
