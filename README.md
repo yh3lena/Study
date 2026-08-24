@@ -92,3 +92,28 @@ $retangulo = new Retangulo($larguraDigitada, $alturaDigitada);
 echo ("A área é: ". $retangulo->calcular_area(). "\n");
 echo("O perimetro é: ". $retangulo->calcular_perimetro(). "\n");
 echo("É um quadrado? ". ($retangulo->isQuadrado() ? "Sim":"Não"). "\n")
+
+<?php
+
+class AcessoSistema
+{
+    private static int $totalAcessos = 0;
+
+    public function __construct()
+    {
+        self::$totalAcessos++;
+    }
+
+    
+    public static function getTotalAcessos(): int
+    {
+        return self::$totalAcessos;
+    }
+}
+
+$acesso1 = new AcessoSistema();
+$acesso2 = new AcessoSistema();
+$acesso3 = new AcessoSistema();
+$acesso4 = new AcessoSistema();
+
+echo "Total de acessos: " . AcessoSistema::getTotalAcessos();
